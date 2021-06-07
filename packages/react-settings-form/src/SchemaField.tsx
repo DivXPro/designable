@@ -32,6 +32,8 @@ import {
   FontStyleSetter,
   DisplayStyleSetter,
   FlexStyleSetter,
+  FieldSizeSetter,
+  FormulaSetter,
 } from './components'
 
 export const SchemaField = createSchemaField({
@@ -53,6 +55,8 @@ export const SchemaField = createSchemaField({
     BoxShadowStyleSetter,
     FlexStyleSetter,
     FontStyleSetter,
+    FieldSizeSetter,
+    FormulaSetter,
     NumberPicker,
     DatePicker,
     TimePicker,

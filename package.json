@@ -52,6 +52,7 @@
     "@typescript-eslint/eslint-plugin": "^4.9.1",
     "@typescript-eslint/parser": "^4.8.2",
     "@umijs/plugin-sass": "^1.1.1",
+    "@toy-box/form-formula": "^1.0.22",
     "antd": "^4.0.0",
     "chalk": "^2.4.2",
     "chokidar": "^2.1.2",

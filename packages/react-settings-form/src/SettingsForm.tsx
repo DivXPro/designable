@@ -47,6 +47,7 @@ export const SettingsForm: React.FC<ISettingFormProps> = observer((props) => {
               labelAlign="left"
               wrapperAlign="right"
               feedbackLayout="none"
+              layout="vertical"
             >
               <SchemaField schema={node.designerProps.propsSchema as any} />
             </Form>
