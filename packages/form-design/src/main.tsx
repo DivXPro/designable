@@ -24,9 +24,10 @@ import {
 } from '@designable/core'
 import { Content } from './content'
 import { Space, Button, Radio } from 'antd'
+import { Setting } from './setting'
 import 'antd/dist/antd.less'
+import 'codemirror/lib/codemirror.css'
 import './theme.less'
-import { convert2Schema } from './converts/formilySchema'
 
 GlobalRegistry.registerDesignerProps({
   Root: {
@@ -301,9 +302,10 @@ const App = () => {
             </ViewportPanel>
           </WorkspacePanel>
         </Workspace>
-        <SettingsPanel title="panels.PropertySettings">
-          <SettingsForm uploadAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" />
-        </SettingsPanel>
+        <Setting />
+        {/* <SettingsPanel title="panels.PropertySettings">
+          <SettingsForm schema={schema} uploadAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" />
+        </SettingsPanel> */}
       </MainPanel>
     </Designer>
   )

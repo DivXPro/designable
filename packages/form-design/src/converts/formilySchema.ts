@@ -1,10 +1,10 @@
-import { ISchema, SchemaItems, SchemaProperties } from '@formily/json-schema'
+import { ISchema } from '@formily/json-schema'
 import { ITreeNode } from '@designable/core'
 
 export const convert2Schema = (data: ITreeNode): ISchema => {
   const properties = {} as Record<string, ISchema>
   ;(data.children || []).map((child) => {
-    properties[getKey(child)] = convert2Schema(child)
+    properties[child.id] = convert2Schema(child)
   })
   if (data.componentName === 'Root') {
     return {
@@ -17,8 +17,4 @@ export const convert2Schema = (data: ITreeNode): ISchema => {
       properties,
     }
   }
-}
-
-const getKey = (data: ITreeNode) => {
-  return data.props?.key || data.id
 }

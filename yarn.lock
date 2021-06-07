@@ -2448,6 +2448,24 @@
     react-codemirror2 "^7.2.1"
     react-dom "^16.12.0"
 
+"@toy-box/form-formula@^1.0.23":
+  version "1.0.23"
+  resolved "https://registry.yarnpkg.com/@toy-box/form-formula/-/form-formula-1.0.23.tgz#ab8dd15343a74c79cda95f69b1bb8428a527ac4e"
+  integrity sha512-h7yLHUg1o9bMjD586HBvDGfFOr3aQ9oCiXjLyZ3RNp7bxn8fsDCBmXF0P0sTJP4IAcElYrXGgKtv/frAsuThKQ==
+  dependencies:
+    "@formily/antd" "^2.0.0-beta.50"
+    "@formily/core" "^2.0.0-beta.50"
+    "@formily/json-schema" "^2.0.0-beta.50"
+    "@formily/react" "^2.0.0-beta.50"
+    "@formulajs/formulajs" "^2.6.9"
+    "@toy-box/formula" "^1.0.4"
+    antd "^4.15.5"
+    classnames "^2.3.1"
+    codemirror "^5.61.0"
+    react "^16.12.0"
+    react-codemirror2 "^7.2.1"
+    react-dom "^16.12.0"
+
 "@toy-box/formula@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@toy-box/formula/-/formula-1.0.4.tgz#e0beb8b4e4692e19c5e5dbcd236f14b8a30febd7"
