@@ -6,45 +6,45 @@ const defaultModeEnum = [
 ]
 
 const defaultValueReaction = [
-  {
-    dependencies: ['defaultMode'],
-    when: '{{ $deps[0] === "custom" }}',
-    fulfill: {
-      state: {
-        visible: true,
-      },
-    },
-  },
-  {
-    dependencies: ['defaultMode'],
-    when: '{{ $deps[0] !== "custom" }}',
-    fulfill: {
-      state: {
-        visible: false,
-      },
-    },
-  },
+  // {
+  //   dependencies: ['defaultMode'],
+  //   when: '{{ $deps[0] === "custom" }}',
+  //   fulfill: {
+  //     state: {
+  //       visible: true,
+  //     },
+  //   },
+  // },
+  // {
+  //   dependencies: ['defaultMode'],
+  //   when: '{{ $deps[0] !== "custom" }}',
+  //   fulfill: {
+  //     state: {
+  //       visible: false,
+  //     },
+  //   },
+  // },
 ]
 
 const formulaReaction = [
-  {
-    dependencies: ['defaultMode'],
-    when: '{{ $deps[0] === "formula" }}',
-    fulfill: {
-      state: {
-        visible: true,
-      },
-    },
-  },
-  {
-    dependencies: ['defaultMode'],
-    when: '{{ $deps[0] !== "formula" }}',
-    fulfill: {
-      state: {
-        visible: false,
-      },
-    },
-  },
+  // {
+  //   dependencies: ['defaultMode'],
+  //   when: '{{ $deps[0] === "formula" }}',
+  //   fulfill: {
+  //     state: {
+  //       visible: true,
+  //     },
+  //   },
+  // },
+  // {
+  //   dependencies: ['defaultMode'],
+  //   when: '{{ $deps[0] !== "formula" }}',
+  //   fulfill: {
+  //     state: {
+  //       visible: false,
+  //     },
+  //   },
+  // },
 ]
 
 GlobalRegistry.registerDesignerProps({
@@ -323,51 +323,90 @@ GlobalRegistry.registerDesignerProps({
       },
     },
   }),
-  // SingleOption: (node) => ({
-  //   title: `components.SingleOption`,
-  //   draggable: true,
-  //   inlineLayout: true,
-  //   propsSchema: {
-  //     type: 'object',
-  //     properties: {
-  //       title: {
-  //         type: 'string',
-  //         'x-decorator': 'FormItem',
-  //         'x-component': 'Input',
-  //       },
-  //       description: {
-  //         type: 'string',
-  //         'x-decorator': 'FormItem',
-  //         'x-component': 'Input',
-  //       },
-  //       size: {
-  //         type: 'string',
-  //         default: 'half',
-  //         'x-decorator': 'FormItem',
-  //         'x-component': 'FieldSizeSetter',
-  //       },
-  //       defaultMode: {
-  //         type: 'string',
-  //         enum: defaultModeEnum,
-  //         default: 'custom',
-  //         'x-decorator': 'FormItem',
-  //         'x-component': 'Select',
-  //         'x-reactions': defaultValueReaction
-  //       },
-  //       formula: {
-  //         type: 'string',
-  //         'x-decorator': 'FormItem',
-  //         'x-component': 'FormulaSetter',
-  //         'x-reactions': formulaReaction
-  //       },
-  //       enum: {
-  //         type: 'array',
-  //         'x-decorator': 'FormItem',
-  //         'x-component': 'EnumSetter',
-  //       }
-  //     },
-  //   },
-  // }),
+  SingleOption: (node) => ({
+    title: `components.SingleOption`,
+    draggable: true,
+    inlineLayout: true,
+    propsSchema: {
+      type: 'object',
+      properties: {
+        title: {
+          type: 'string',
+          'x-decorator': 'FormItem',
+          'x-component': 'Input',
+        },
+        description: {
+          type: 'string',
+          'x-decorator': 'FormItem',
+          'x-component': 'Input',
+        },
+        size: {
+          type: 'string',
+          default: 'half',
+          'x-decorator': 'FormItem',
+          'x-component': 'FieldSizeSetter',
+        },
+        defaultMode: {
+          type: 'string',
+          enum: defaultModeEnum,
+          default: 'custom',
+          'x-decorator': 'FormItem',
+          'x-component': 'Select',
+          'x-reactions': defaultValueReaction,
+        },
+        formula: {
+          type: 'string',
+          'x-decorator': 'FormItem',
+          'x-component': 'FormulaSetter',
+          'x-reactions': formulaReaction,
+        },
+        enum: {
+          type: 'array',
+          'x-component': 'ArrayItems',
+          'x-decorator': 'FormItem',
+          items: {
+            type: 'object',
+            'x-component-props': {
+              style: 'width: 100%',
+            },
+            properties: {
+              space: {
+                type: 'void',
+                'x-component': 'Space',
+                'x-component-props': {
+                  style: { width: '100%' },
+                },
+                properties: {
+                  sort: {
+                    type: 'void',
+                    'x-decorator': 'FormItem',
+                    'x-component': 'ArrayItems.SortHandle',
+                  },
+                  option: {
+                    type: 'object',
+                    'x-decorator': 'FormItem',
+                    'x-component': 'OptionInput',
+                  },
+                  remove: {
+                    type: 'void',
+                    'x-decorator': 'FormItem',
+                    'x-component': 'ArrayItems.Remove',
+                  },
+                },
+              },
+            },
+          },
+          properties: {
+            add: {
+              type: 'void',
+              title: '添加选项',
+              'x-component': 'ArrayItems.Addition',
+            },
+          },
+        },
+      },
+    },
+  }),
   FormRow: {
     title: 'components.FormRow',
     droppable: true,
@@ -434,15 +473,15 @@ GlobalDragSource.setSourcesByGroup('input', [
       'x-component': 'FieldBoolean',
     },
   },
-  // {
-  //   componentName: 'SingleOption',
-  //   props: {
-  //     title: '单选',
-  //     type: 'string',
-  //     'x-decorator': 'FormItem',
-  //     'x-component': 'FieldSelect',
-  //   },
-  // },
+  {
+    componentName: 'SingleOption',
+    props: {
+      title: '单选',
+      type: 'string',
+      'x-decorator': 'FormItem',
+      'x-component': 'FieldSelect',
+    },
+  },
 ])
 
 GlobalDragSource.setSourcesByGroup('display', [

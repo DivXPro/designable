@@ -28,7 +28,7 @@
     "@formily/react": "^2.0.0-beta.50",
     "@formily/reactive": "^2.0.0-beta.50",
     "@formily/reactive-react": "^2.0.0-beta.50",
-    "@toy-box/form-formula": "^1.0.23",
+    "@toy-box/form-formula": "^1.0.24",
     "immutability-helper": "^3.1.1",
     "react-color": "^2.19.3"
   },

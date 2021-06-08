@@ -34,6 +34,7 @@ import {
   FlexStyleSetter,
   FieldSizeSetter,
   FormulaSetter,
+  OptionInput,
 } from './components'
 
 export const SchemaField = createSchemaField({
@@ -57,6 +58,7 @@ export const SchemaField = createSchemaField({
     FontStyleSetter,
     FieldSizeSetter,
     FormulaSetter,
+    OptionInput,
     NumberPicker,
     DatePicker,
     TimePicker,

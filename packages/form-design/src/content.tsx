@@ -166,29 +166,29 @@ export const Content = () => (
           </FormItemCover>
         )
       }),
-      // SingleOption: observer((props) => {
-      //   const node = useTreeNode()
-      //   const style = useMemo(
-      //     () => ({
-      //       width: takeWidth(props.size),
-      //     }),
-      //     [props.size]
-      //   )
-      //   const field = useMemo(
-      //     () => ({
-      //       key: node.props.key,
-      //       title: node.props.title,
-      //       type: 'number',
-      //       options: node.props.enum,
-      //     }),
-      //     []
-      //   )
-      //   return (
-      //     <FormItemCover style={style} label={node.props.title} {...props}>
-      //       <Fields.FieldSelect mode="edit" field={field} />
-      //     </FormItemCover>
-      //   )
-      // }),
+      SingleOption: observer((props) => {
+        const node = useTreeNode()
+        const style = useMemo(
+          () => ({
+            width: takeWidth(props.size),
+          }),
+          [props.size]
+        )
+        const field = useMemo(
+          () => ({
+            key: node.props.key,
+            title: node.props.title,
+            type: 'number',
+            options: node.props.enum,
+          }),
+          []
+        )
+        return (
+          <FormItemCover style={style} label={node.props.title} {...props}>
+            <Fields.FieldSelect mode="edit" field={field} />
+          </FormItemCover>
+        )
+      }),
       FormRow: (props) => {
         return (
           <div

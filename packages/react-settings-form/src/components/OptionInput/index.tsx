@@ -1,23 +1,73 @@
-import React, { useCallback } from 'react'
-import { Button, Modal } from 'antd'
-import { usePrefix, IconWidget } from '@designable/react'
+import React, { useCallback, useMemo } from 'react'
+import { usePrefix } from '@designable/react'
+import cls from 'classnames'
+import { FormDialog, FormItem, FormLayout, Input } from '@formily/antd'
+import { createSchemaField } from '@formily/react'
+import './styles.less'
+
+const SchemaField = createSchemaField({
+  components: {
+    FormItem,
+    Input,
+  },
+})
+
+const schema = {
+  type: 'object',
+  properties: {
+    label: {
+      type: 'string',
+      title: '选项名称',
+      required: true,
+      'x-decorator': 'FormItem',
+      'x-component': 'Input',
+    },
+    value: {
+      type: 'string',
+      title: '选项值',
+      required: true,
+      'x-decorator': 'FormItem',
+      'x-component': 'Input',
+    },
+  },
+}
 
 export const OptionInput = (props) => {
-  const prefixCls = usePrefix('option-item-input')
-  const handleEdit = useCallback(() => {}, [])
+  const prefix = usePrefix('option-input')
+  const handleEdit = useCallback(() => {
+    FormDialog(
+      {
+        title: '选项',
+        okText: '确定',
+        cancelText: '取消',
+      },
+      () => {
+        return (
+          <FormLayout labelCol={6} wrapperCol={10}>
+            <SchemaField schema={schema} />
+            <FormDialog.Footer />
+          </FormLayout>
+        )
+      }
+    )
+      .open({
+        values: {
+          label: props.value?.label,
+          value: props.value?.value,
+        },
+      })
+      .then((data) => props.onChange(data))
+  }, [props.value])
 
   return (
-    <>
-      <div className={prefixCls}>
-        {props.value.title || props.value.label}
-        <Button type="text" onClick={handleEdit}>
-          <IconWidget infer="setup" />
-        </Button>
-        <Button type="text">
-          <IconWidget infer="delete" />
-        </Button>
-      </div>
-      <Modal></Modal>
-    </>
+    <div
+      className={cls(prefix, props.className)}
+      style={props.style}
+      onClick={handleEdit}
+    >
+      {props.value?.label || (
+        <span className={`${prefix}__placeholder`}>点击设置选项值</span>
+      )}
+    </div>
   )
 }

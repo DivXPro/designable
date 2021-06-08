@@ -1,16 +1,35 @@
-import React, { useCallback, useContext, useState } from 'react'
+import React, { FC, useCallback, useContext, useEffect, useState } from 'react'
 import { Button, Modal } from 'antd'
 import { FormulaEditor } from '@toy-box/form-formula'
 import { SettingsFormContext } from '../../context'
 
-export const FormulaSetter = (props) => {
+export interface IFormulaSetterProps {
+  style?: React.CSSProperties
+  className?: string
+  value: string
+  onChange: (value: string) => void
+}
+
+export const FormulaSetter: FC<IFormulaSetterProps> = ({
+  style,
+  className,
+  value,
+  onChange,
+}) => {
   const [visible, setVisible] = useState(false)
-  const [formula, setFormula] = useState(props.formula)
+  const [formula, setFormula] = useState<string>()
   const context = useContext(SettingsFormContext)
+  useEffect(() => setFormula(value), [value])
+
   const handleChange = useCallback(() => {
-    props.onChange(formula)
+    onChange(formula)
     setVisible(false)
-  }, [formula, setVisible])
+  }, [formula, onChange, setVisible])
+
+  const handleCancel = useCallback(() => {
+    setFormula(value)
+    setVisible(false)
+  }, [value, setFormula, setVisible])
 
   return (
     <React.Fragment>
@@ -18,7 +37,7 @@ export const FormulaSetter = (props) => {
         title="公式配置"
         visible={visible}
         onOk={handleChange}
-        onCancel={() => setVisible(false)}
+        onCancel={handleCancel}
         width={900}
       >
         <FormulaEditor
@@ -28,8 +47,14 @@ export const FormulaSetter = (props) => {
           onChange={setFormula}
         />
       </Modal>
-      <Button onClick={() => setVisible(true)} block>
-        公式
+      <Button
+        type={value ? 'primary' : 'dashed'}
+        style={style}
+        className={className}
+        onClick={() => setVisible(true)}
+        block
+      >
+        设置公式
       </Button>
     </React.Fragment>
   )
