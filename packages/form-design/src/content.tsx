@@ -3,7 +3,7 @@ import { ComponentTreeWidget, useTreeNode } from '@designable/react'
 import { observer } from '@formily/reactive-react'
 import { Fields } from '@toy-box/toybox-lib'
 import { FormItemCover } from './form/FormItemCover'
-import { Form, Input } from 'antd'
+import { Form } from 'antd'
 import 'antd/dist/antd.css'
 
 const takeWidth = (width: string | number) => {
@@ -38,6 +38,28 @@ export const Content = () => (
           }),
           [props.size]
         )
+        const field = useMemo(
+          () => ({
+            key: node.props.key,
+            title: node.props.title,
+            type: 'string',
+          }),
+          []
+        )
+        return (
+          <FormItemCover style={style} label={node.props.title} {...props}>
+            <Fields.FieldString mode="edit" field={field} />
+          </FormItemCover>
+        )
+      }),
+      Text: observer((props) => {
+        const node = useTreeNode()
+        const style = useMemo(
+          () => ({
+            width: takeWidth(props.size),
+          }),
+          [props.size]
+        )
 
         const field = useMemo(
           () => ({
@@ -49,7 +71,7 @@ export const Content = () => (
         )
         return (
           <FormItemCover style={style} label={node.props.title} {...props}>
-            <Input />
+            <Fields.FieldText mode="edit" field={field} />
           </FormItemCover>
         )
       }),
@@ -61,7 +83,6 @@ export const Content = () => (
           }),
           [props.size]
         )
-
         const field = useMemo(
           () => ({
             key: node.props.key,
@@ -76,16 +97,107 @@ export const Content = () => (
           </FormItemCover>
         )
       }),
+      Date: observer((props) => {
+        const node = useTreeNode()
+        const style = useMemo(
+          () => ({
+            width: takeWidth(props.size),
+          }),
+          [props.size]
+        )
+        const field = useMemo(
+          () => ({
+            key: node.props.key,
+            title: node.props.title,
+            type: 'Date',
+            format: node.props.format,
+          }),
+          []
+        )
+        return (
+          <FormItemCover style={style} label={node.props.title} {...props}>
+            <Fields.FieldDate mode="edit" field={field} />
+          </FormItemCover>
+        )
+      }),
+      Datetime: observer((props) => {
+        const node = useTreeNode()
+        const style = useMemo(
+          () => ({
+            width: takeWidth(props.size),
+          }),
+          [props.size]
+        )
+        const field = useMemo(
+          () => ({
+            key: node.props.key,
+            title: node.props.title,
+            type: 'Datetime',
+            format: node.props.format,
+          }),
+          []
+        )
+        return (
+          <FormItemCover style={style} label={node.props.title} {...props}>
+            <Fields.FieldDate mode="edit" field={field} />
+          </FormItemCover>
+        )
+      }),
+      Boolean: observer((props) => {
+        const node = useTreeNode()
+        const style = useMemo(
+          () => ({
+            width: takeWidth(props.size),
+          }),
+          [props.size]
+        )
+
+        const field = useMemo(
+          () => ({
+            key: node.props.key,
+            title: node.props.title,
+            type: 'string',
+          }),
+          []
+        )
+        return (
+          <FormItemCover style={style} label={node.props.title} {...props}>
+            <Fields.FieldBoolean mode="edit" field={field} />
+          </FormItemCover>
+        )
+      }),
+      // SingleOption: observer((props) => {
+      //   const node = useTreeNode()
+      //   const style = useMemo(
+      //     () => ({
+      //       width: takeWidth(props.size),
+      //     }),
+      //     [props.size]
+      //   )
+      //   const field = useMemo(
+      //     () => ({
+      //       key: node.props.key,
+      //       title: node.props.title,
+      //       type: 'number',
+      //       options: node.props.enum,
+      //     }),
+      //     []
+      //   )
+      //   return (
+      //     <FormItemCover style={style} label={node.props.title} {...props}>
+      //       <Fields.FieldSelect mode="edit" field={field} />
+      //     </FormItemCover>
+      //   )
+      // }),
       FormRow: (props) => {
         return (
           <div
             {...props}
             style={{
-              background: '#eee',
-              border: '1px solid #ddd',
+              borderBottom: '1px dashed #ddd',
               display: 'flex',
               padding: 8,
-              height: props.children ? 'auto' : 150,
+              height: props.children ? 'auto' : 102,
               alignItems: 'center',
             }}
           >

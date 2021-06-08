@@ -1095,6 +1095,56 @@
   resolved "https://registry.yarnpkg.com/@ctrl/tinycolor/-/tinycolor-3.4.0.tgz#c3c5ae543c897caa9c2a68630bed355be5f9990f"
   integrity sha512-JZButFdZ1+/xAfpguQHoabIXkcqRRKpMrWKBkpEZZyxfY9C1DpADFB8PEqGSTeFr135SaTRfKqGKx5xSCLI7ZQ==
 
+"@designable/core@0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@designable/core/-/core-0.1.10.tgz#6c6e1913e83a85e10a8f200c16d9d6bea8afe226"
+  integrity sha512-3IY+e4PZMQrCld0MV2ovJIMB88wxAMYytGYlMFg3UX96WvFUAZQyuVgUk00eOXPFLhyne67EN3SyozfGJHHWNQ==
+  dependencies:
+    "@designable/shared" "0.1.10"
+    "@formily/path" "^2.0.0-beta.50"
+    "@formily/reactive" "^2.0.0-beta.50"
+    "@juggle/resize-observer" "^3.3.1"
+
+"@designable/react-sandbox@0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@designable/react-sandbox/-/react-sandbox-0.1.10.tgz#0c829f483e9e9de87eec8f1c624d0f2849355be4"
+  integrity sha512-v9DYOPIHuGEfIuTu2UZCwf/F8CeWwL4kf36l2QUVnvwyRx2QbzxgSJTBqJUaMrCt6u6FqAY0+7O3SO0gUH3N3g==
+  dependencies:
+    "@designable/react" "0.1.10"
+    "@designable/shared" "0.1.10"
+
+"@designable/react-settings-form@0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@designable/react-settings-form/-/react-settings-form-0.1.10.tgz#a2a11ab8f7d95ac29cbf6417bb2cf98ff2b318f8"
+  integrity sha512-PxA6c+vfjxFEUulQq8oG/uRjtjMan7EygRu7DpK024PPHew2plCWXh5oaL8mfzAozLu18MD4zABjK7vptaIIJA==
+  dependencies:
+    "@designable/core" "0.1.10"
+    "@designable/react" "0.1.10"
+    "@formily/antd" "^2.0.0-beta.50"
+    "@formily/core" "^2.0.0-beta.50"
+    "@formily/react" "^2.0.0-beta.50"
+    "@formily/reactive" "^2.0.0-beta.50"
+    "@formily/reactive-react" "^2.0.0-beta.50"
+    react-color "^2.19.3"
+
+"@designable/react@0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@designable/react/-/react-0.1.10.tgz#74ea21e83cace712e2ea444b3697a69999fad29c"
+  integrity sha512-PzU9Un07nMIZA0JhoacmAzDbQg0xPuKYZPNAicMvYfUz9N1MqCwvAwKxDYByyEDptw4GP1EDdPZXhQM8KwqjHg==
+  dependencies:
+    "@designable/core" "0.1.10"
+    "@designable/shared" "0.1.10"
+    "@formily/reactive" "^2.0.0-beta.50"
+    "@formily/reactive-react" "^2.0.0-beta.50"
+    "@juggle/resize-observer" "^3.3.1"
+
+"@designable/shared@0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@designable/shared/-/shared-0.1.10.tgz#30d88e112097c7a129d0f318efa43afe4e286836"
+  integrity sha512-+No6fCMz1cJvnZxJ1GlXfPOOus2iU8gLFS9oVAM+3MB0kk7VPv5qx+JYQbFQZXf3UpuzJV2nzl6J9QykpkzSlA==
+  dependencies:
+    requestidlecallback "^0.3.0"
+
 "@emotion/is-prop-valid@^0.7.3":
   version "0.7.3"
   resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.7.3.tgz#a6bf4fa5387cbba59d44e698a4680f481a8da6cc"
@@ -2429,24 +2479,6 @@
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
-
-"@toy-box/form-formula@^1.0.22":
-  version "1.0.22"
-  resolved "https://registry.yarnpkg.com/@toy-box/form-formula/-/form-formula-1.0.22.tgz#3b0bcd14f0b22dec19ca31fb2b1d4dc1b753c13b"
-  integrity sha512-p54geuOoKYg06K4n5cKfio8d++NZlSpPDoLZ6wnyuIu32Dq+Dc1/6vKCrBv+y4tyfvT4ipq1Q94ApfD3QaO0bQ==
-  dependencies:
-    "@formily/antd" "^2.0.0-beta.50"
-    "@formily/core" "^2.0.0-beta.50"
-    "@formily/json-schema" "^2.0.0-beta.50"
-    "@formily/react" "^2.0.0-beta.50"
-    "@formulajs/formulajs" "^2.6.9"
-    "@toy-box/formula" "^1.0.4"
-    antd "^4.15.5"
-    classnames "^2.3.1"
-    codemirror "^5.61.0"
-    react "^16.12.0"
-    react-codemirror2 "^7.2.1"
-    react-dom "^16.12.0"
 
 "@toy-box/form-formula@^1.0.23":
   version "1.0.23"
