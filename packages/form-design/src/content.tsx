@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { ComponentTreeWidget, useTreeNode } from '@designable/react'
 import { observer } from '@formily/reactive-react'
-import { Fields } from '@toy-box/toybox-lib'
+import { Fields, FieldRow, FieldSegment } from '@toy-box/toybox-lib'
 import { FormItemCover } from './form/FormItemCover'
 import { Form } from 'antd'
 import 'antd/dist/antd.css'
@@ -190,18 +190,30 @@ export const Content = () => (
         )
       }),
       FormRow: (props) => {
+        const node = useTreeNode()
         return (
-          <div
-            {...props}
-            style={{
-              borderBottom: '1px dashed #ddd',
-              display: 'flex',
-              padding: 8,
-              height: props.children ? 'auto' : 102,
-              alignItems: 'center',
-            }}
-          >
-            {props.children ? props.children : <span>拖拽字段进入该区域</span>}
+          <div {...props}>
+            <FieldRow {...node.props}>
+              {props.children ? (
+                props.children
+              ) : (
+                <span>拖拽字段进入该区域</span>
+              )}
+            </FieldRow>
+          </div>
+        )
+      },
+      FormSegment: (props) => {
+        const node = useTreeNode()
+        return (
+          <div {...props}>
+            <FieldSegment {...node.props}>
+              {props.children ? (
+                props.children
+              ) : (
+                <span>拖拽字段进入该区域</span>
+              )}
+            </FieldSegment>
           </div>
         )
       },

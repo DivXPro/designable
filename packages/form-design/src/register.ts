@@ -412,7 +412,27 @@ GlobalRegistry.registerDesignerProps({
     droppable: true,
     inlineChildrenLayout: true,
     allowAppend: (target, sources) =>
-      sources.every((node) => node.componentName != 'FormRow'),
+      sources.every(
+        (node) =>
+          node.componentName != 'FormRow' && node.componentName != 'FormSegment'
+      ),
+  },
+  FormSegment: {
+    title: 'components.FormSegment',
+    droppable: true,
+    inlineChildrenLayout: true,
+    propsSchema: {
+      type: 'object',
+      properties: {
+        title: {
+          type: 'string',
+          'x-decorator': 'FormItem',
+          'x-component': 'Input',
+        },
+      },
+    },
+    allowAppend: (target, sources) =>
+      sources.every((node) => node.componentName != 'FormSegment'),
   },
 })
 
@@ -488,10 +508,19 @@ GlobalDragSource.setSourcesByGroup('display', [
   {
     componentName: 'FormRow',
     props: {
-      title: '行容器',
+      title: '行',
       type: 'void',
       'x-decorator': 'FormItem',
       'x-component': 'FormRow',
+    },
+  },
+  {
+    componentName: 'FormSegment',
+    props: {
+      title: '区块',
+      type: 'void',
+      'x-decorator': 'FormItem',
+      'x-component': 'FormSegment',
     },
   },
 ])
@@ -511,8 +540,9 @@ GlobalRegistry.registerDesignerLocales({
       Boolean: '是非字段',
       Date: '日期',
       Datetime: '日期时间',
-      FormRow: '行容器',
       SingleOption: '单选',
+      FormRow: '行',
+      FormSegment: '区块',
     },
     settings: {
       title: '标题',
