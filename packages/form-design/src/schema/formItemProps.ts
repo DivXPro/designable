@@ -1,3 +1,5 @@
+import { omit } from '../utils'
+
 export const defaultModeEnum = [
   { label: '指定', value: 'custom' },
   { label: '公式', value: 'formula' },
@@ -44,7 +46,7 @@ export const commonProperties = {
     'x-decorator': 'FormItem',
     'x-component': 'Switch',
   },
-  title: {
+  name: {
     type: 'string',
     maxLength: 255,
     required: true,
@@ -133,7 +135,7 @@ const enumPropertie = {
   },
 }
 
-export const InputProperties = {
+export const BasicInputProperties = {
   Root: {
     title: 'components.Root',
     allowAppend: (target, sources) =>
@@ -438,6 +440,50 @@ export const InputProperties = {
       },
     },
   }),
+}
+
+export const AdvanceInputProperties = {
+  RefObjectId: {
+    title: 'components.RefObjectId',
+    droppable: true,
+    inlineChildrenLayout: true,
+    propsSchema: {
+      type: 'object',
+      properties: {
+        ...commonProperties,
+        refObjectId: {
+          type: 'string',
+          required: true,
+          'x-decorator': 'FormItem',
+          'x-component': 'FieldSelect',
+        },
+      },
+    },
+  },
+  ArrayTable: {
+    title: 'components.ArrayTable',
+    droppable: true,
+    propsSchema: {
+      type: 'object',
+      properties: {
+        ...omit(commonProperties, ['size', 'required']),
+        minLength: {
+          type: 'integer',
+          minimum: 1,
+          'x-validator': 'integer',
+          'x-decorator': 'FormItem',
+          'x-component': 'NumberPicker',
+        },
+        maxLength: {
+          type: 'integer',
+          minimum: 1,
+          'x-validator': 'integer',
+          'x-decorator': 'FormItem',
+          'x-component': 'NumberPicker',
+        },
+      },
+    },
+  },
 }
 
 export const ContainerProperties = {

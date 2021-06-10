@@ -2,9 +2,9 @@ import enUS from 'antd/es/calendar/locale/en_US'
 
 export const zhCN = {
   sources: {
-    Inputs: '输入控件',
-    Displays: '展示控件',
-    Feedbacks: '反馈控件',
+    Basic: '基础组件',
+    Advance: '高级组件',
+    Container: '布局组件',
   },
   components: {
     Root: '表单',
@@ -19,11 +19,13 @@ export const zhCN = {
     MultiOption: '多选',
     Rate: '评分',
     Percent: '百分比',
+    RefObjectId: '业务对象',
+    ArrayTable: '列表表格',
     FormRow: '行',
     FormSegment: '区块',
   },
   settings: {
-    title: '标题',
+    name: '标题',
     hidden: '是否隐藏',
     size: '宽度（%）',
     description: '字段描述',
@@ -33,17 +35,22 @@ export const zhCN = {
     format: '格式',
     enum: '选项',
     count: '总计',
+    minimum: '最小值',
+    maximum: '最大值',
+    minLength: '最小长度',
+    maxLength: '最大长度',
     required: '必填项',
     isSystem: '系统字段',
     decimalScale: '小数精度',
+    refObjectId: '关联业务对象',
   },
 }
 
 const enUs = {
   sources: {
-    Inputs: 'Inputs',
-    Displays: 'Displays',
-    Feedbacks: 'Feedbacks',
+    Basic: 'Basic',
+    Advance: 'Advance',
+    Container: 'Container',
   },
   components: {
     Root: 'Form',
@@ -58,11 +65,13 @@ const enUs = {
     MultiOption: 'Multi option',
     Rate: 'Rate',
     Percent: 'Percent',
+    RefObjectId: 'Business object',
+    ArrayTable: 'Array table',
     FormRow: 'FormRow',
     FormSegment: 'FormSegment',
   },
   settings: {
-    title: 'Title',
+    name: 'Name',
     hidden: 'Hidden',
     size: 'Size (%)',
     defaultMode: 'Default Mode',
@@ -71,9 +80,14 @@ const enUs = {
     format: 'format',
     enum: 'Enum options',
     count: 'Count',
+    minimum: 'Minimum',
+    maximum: 'Maximum',
+    minLength: 'Min length',
+    maxLength: 'Max length',
     required: 'Required',
     isSystem: 'System field',
     decimalScale: 'Float Scale',
+    refObjectId: 'Reference Object',
   },
 }
 

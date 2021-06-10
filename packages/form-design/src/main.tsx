@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import ReactDOM from 'react-dom'
 import {
   Designer,
@@ -13,19 +13,15 @@ import {
   WorkspacePanel,
   ToolbarPanel,
   ViewportPanel,
-  SettingsPanel,
 } from '@designable/react'
 import { observer } from '@formily/react'
-import {
-  createDesigner,
-  GlobalRegistry,
-  GlobalDragSource,
-} from '@designable/core'
+import { createDesigner, GlobalRegistry } from '@designable/core'
 import { Content } from './content'
 import { Space, Button, Radio } from 'antd'
 import { Setting } from './setting'
 import { FormDesignContext } from './context'
 import './register'
+
 import 'antd/dist/antd.less'
 import 'codemirror/lib/codemirror.css'
 import './theme.less'
@@ -53,25 +49,36 @@ const Actions = observer((props) => (
       }}
     />
     <Button>保存</Button>
-    <Button type="primary">发布</Button>
+    <Button
+      type="primary"
+      onClick={() => {
+        props.publish()
+      }}
+    >
+      发布
+    </Button>
   </Space>
 ))
 
 const App = () => {
   const [view, setView] = useState('design')
   const engine = useMemo(() => createDesigner(), [])
+  const publish = useCallback(() => {
+    // console.log('Ischema', engine.getCurrentTree().serialize())
+  }, [engine])
 
   return (
     <FormDesignContext.Provider value={{ prefixCls: 'form-design-' }}>
       <Designer engine={engine}>
-        <MainPanel logo={<Logo />} actions={<Actions />}>
+        <MainPanel logo={<Logo />} actions={<Actions publish={publish} />}>
           <CompositePanel>
             <CompositePanel.Item
               title="panels.Component"
               icon={<IconWidget infer="Component" />}
             >
-              <DragSourceWidget title="sources.Inputs" name="input" />
-              <DragSourceWidget title="sources.Displays" name="display" />
+              <DragSourceWidget title="sources.Basic" name="basic" />
+              <DragSourceWidget title="sources.Advance" name="advance" />
+              <DragSourceWidget title="sources.Container" name="container" />
             </CompositePanel.Item>
             <CompositePanel.Item
               title="panels.OutlinedTree"

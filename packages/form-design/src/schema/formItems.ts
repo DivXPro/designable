@@ -1,8 +1,8 @@
-const InputItems = [
+export const BasicInputItems = [
   {
     componentName: 'String',
     props: {
-      title: '文本字段',
+      name: '文本字段',
       type: 'string',
       'x-decorator': 'FormItem',
       'x-component': 'Input',
@@ -11,7 +11,7 @@ const InputItems = [
   {
     componentName: 'Text',
     props: {
-      title: '大段文字',
+      name: '大段文字',
       type: 'text',
       'x-decorator': 'FormItem',
       'x-component': 'Input.TextArea',
@@ -20,7 +20,7 @@ const InputItems = [
   {
     componentName: 'Number',
     props: {
-      title: '数字字段',
+      name: '数字字段',
       type: 'number',
       'x-decorator': 'FormItem',
       'x-component': 'NumberPicker',
@@ -39,7 +39,7 @@ const InputItems = [
   {
     componentName: 'Date',
     props: {
-      title: '日期',
+      name: '日期',
       type: 'date',
       format: 'YYYY-MM-DD',
       'x-decorator': 'FormItem',
@@ -59,7 +59,7 @@ const InputItems = [
   {
     componentName: 'SingleOption',
     props: {
-      title: '单选',
+      name: '单选',
       type: 'singleOption',
       'x-decorator': 'FormItem',
       'x-component': 'FieldSelect',
@@ -68,7 +68,7 @@ const InputItems = [
   {
     componentName: 'MultiOption',
     props: {
-      title: '多选',
+      name: '多选',
       type: 'multiOption',
       'x-decorator': 'FormItem',
       'x-component': 'FieldSelect',
@@ -77,7 +77,7 @@ const InputItems = [
   {
     componentName: 'Rate',
     props: {
-      title: '评分',
+      name: '评分',
       type: 'rate',
       'x-decorator': 'FormItem',
       'x-component': 'Rate',
@@ -86,7 +86,7 @@ const InputItems = [
   {
     componentName: 'Boolean',
     props: {
-      title: '是非字段',
+      name: '是非字段',
       type: 'boolean',
       'x-decorator': 'FormItem',
       'x-component': 'FieldBoolean',
@@ -95,7 +95,7 @@ const InputItems = [
   {
     componentName: 'Percent',
     props: {
-      title: '百分比',
+      name: '百分比',
       type: 'percent',
       'x-decorator': 'FormItem',
       'x-component': 'NumberPicker',
@@ -103,12 +103,35 @@ const InputItems = [
   },
 ]
 
-const ContainerItems = [
+export const AdvanceInputItems = [
+  {
+    componentName: 'RefObjectId',
+    props: {
+      name: '关联对象',
+      type: 'objectId',
+      'x-decorator': 'FormItem',
+      'x-component': 'FieldSelect',
+    },
+  },
+  {
+    componentName: 'ArrayTable',
+    props: {
+      name: '列表表格',
+      type: 'arrayTable',
+      size: 'full',
+      items: [],
+      'x-decorator': 'FormItem',
+      'x-component': 'ArrayTable',
+    },
+  },
+]
+
+export const ContainerItems = [
   {
     componentName: 'FormRow',
     props: {
       title: '行',
-      type: 'void',
+      type: 'formRow',
       'x-decorator': 'FormItem',
       'x-component': 'FormRow',
     },
@@ -117,7 +140,7 @@ const ContainerItems = [
     componentName: 'FormSegment',
     props: {
       title: '区块',
-      type: 'void',
+      type: 'formSegment',
       'x-decorator': 'FormItem',
       'x-component': 'FormSegment',
     },

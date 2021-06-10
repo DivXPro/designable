@@ -86,20 +86,17 @@ export interface IFormSchemaClassic {
   layout: IFormLayout
 }
 
-export interface IFormSchema {
+export interface IFormSchemaBase {
   type: string
   name?: string
   description?: string
   index?: number
-  authority?: AuthorityType
-  authorityScope?: AuthorityType[]
   isSystem?: boolean
   defaultMode?: DefaultMode
   defaultValue?: any
   formula?: string
   enum?: SchemaEnum
   refObjectId?: string
-  unique?: boolean
   required?: boolean
   maximum?: number
   minimum?: number
@@ -113,10 +110,14 @@ export interface IFormSchema {
   maxProperties?: number
   pattern?: string
   format?: string
-  idKey?: string
-  titleKey?: string
-  properties?: Record<string, IFormSchema>
+  properties?: Record<string, IFormSchemaBase>
   size?: LayoutSize | number
+}
+
+export interface IFormSchemaAuth extends IFormSchemaBase {
+  authority?: AuthorityType
+  authorityScope?: AuthorityType[]
+  properties?: Record<string, IFormSchemaAuth>
 }
 
 export interface IFormDesignContext {

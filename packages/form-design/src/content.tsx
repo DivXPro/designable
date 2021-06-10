@@ -3,7 +3,15 @@ import { ComponentTreeWidget, useTreeNode } from '@designable/react'
 import { observer } from '@formily/reactive-react'
 import { Fields } from '@toy-box/toybox-lib'
 import { FormItemCover, FromRowCover, FromSegmentCover } from './form'
-import { Form, Rate } from 'antd'
+import {
+  Form,
+  Select,
+  Switch,
+  Table,
+  DatePicker,
+  Rate,
+  InputNumber,
+} from 'antd'
 import 'antd/dist/antd.css'
 
 const takeWidth = (width: string | number) => {
@@ -28,7 +36,11 @@ export const Content = () => (
     components={{
       Root: observer((props) => {
         const node = useTreeNode()
-        return <Form layout="vertical">{props.children}</Form>
+        return (
+          <Form layout="vertical" {...node.props}>
+            {props.children}
+          </Form>
+        )
       }),
       String: observer((props) => {
         const node = useTreeNode()
@@ -127,18 +139,9 @@ export const Content = () => (
           }),
           [props.size]
         )
-        const field = useMemo(
-          () => ({
-            key: node.props.key,
-            title: node.props.title,
-            type: 'Date',
-            format: node.props.format,
-          }),
-          []
-        )
         return (
           <FormItemCover style={style} label={node.props.title} {...props}>
-            <Fields.FieldDate mode="edit" field={field} />
+            <DatePicker />
           </FormItemCover>
         )
       }),
@@ -150,18 +153,9 @@ export const Content = () => (
           }),
           [props.size]
         )
-        const field = useMemo(
-          () => ({
-            key: node.props.key,
-            title: node.props.title,
-            type: 'Datetime',
-            format: node.props.format,
-          }),
-          []
-        )
         return (
           <FormItemCover style={style} label={node.props.title} {...props}>
-            <Fields.FieldDate mode="edit" field={field} />
+            <DatePicker />
           </FormItemCover>
         )
       }),
@@ -173,18 +167,9 @@ export const Content = () => (
           }),
           [props.size]
         )
-
-        const field = useMemo(
-          () => ({
-            key: node.props.key,
-            title: node.props.title,
-            type: 'string',
-          }),
-          []
-        )
         return (
           <FormItemCover style={style} label={node.props.title} {...props}>
-            <Fields.FieldBoolean mode="edit" field={field} />
+            <Switch />
           </FormItemCover>
         )
       }),
@@ -196,18 +181,9 @@ export const Content = () => (
           }),
           [props.size]
         )
-        const field = useMemo(
-          () => ({
-            key: node.props.key,
-            title: node.props.title,
-            type: 'number',
-            options: node.props.enum,
-          }),
-          []
-        )
         return (
           <FormItemCover style={style} label={node.props.title} {...props}>
-            <Fields.FieldSelect mode="edit" field={field} />
+            <Select />
           </FormItemCover>
         )
       }),
@@ -242,18 +218,53 @@ export const Content = () => (
           }),
           [props.size]
         )
-        const field = useMemo(
-          () => ({
-            key: node.props.key,
-            title: node.props.title,
-            type: 'number',
-            options: node.props.enum,
-          }),
-          []
-        )
         return (
           <FormItemCover style={style} label={node.props.title} {...props}>
             <Rate {...node.props} />
+          </FormItemCover>
+        )
+      }),
+      Percent: observer((props) => {
+        const node = useTreeNode()
+        const style = useMemo(
+          () => ({
+            width: takeWidth(props.size),
+          }),
+          [props.size]
+        )
+        return (
+          <FormItemCover style={style} label={node.props.title} {...props}>
+            <InputNumber
+              style={{ width: '100%' }}
+              formatter={(value) => `${value}%`}
+              {...node.props}
+            />
+          </FormItemCover>
+        )
+      }),
+      RefObjectId: observer((props) => {
+        const node = useTreeNode()
+        const style = useMemo(
+          () => ({
+            width: takeWidth(props.size),
+          }),
+          [props.size]
+        )
+        return (
+          <FormItemCover style={style} label={node.props.title} {...props}>
+            <Select {...node.props} />
+          </FormItemCover>
+        )
+      }),
+      ArrayTable: observer((props) => {
+        const node = useTreeNode()
+        const columns = (node.props.items || []).map((item, index) => ({
+          key: item.key,
+          name: node.props.items[index].title,
+        }))
+        return (
+          <FormItemCover label={node.props.title} {...props}>
+            <Table columns={columns} />
           </FormItemCover>
         )
       }),

@@ -1,13 +1,25 @@
 import { GlobalRegistry, GlobalDragSource } from '@designable/core'
-import { ContainerProperties, InputProperties } from './schema/formItemProps'
+import {
+  AdvanceInputProperties,
+  BasicInputProperties,
+  ContainerProperties,
+} from './schema/formItemProps'
+import {
+  AdvanceInputItems,
+  BasicInputItems,
+  ContainerItems,
+} from './schema/formItems'
 import locales from './locales'
 
 GlobalRegistry.registerDesignerProps({
-  ...InputProperties,
+  ...BasicInputProperties,
+  ...AdvanceInputProperties,
   ...ContainerProperties,
 })
 
-GlobalDragSource.setSourcesByGroup('input', InputItems)
+GlobalDragSource.setSourcesByGroup('basic', BasicInputItems)
+
+GlobalDragSource.setSourcesByGroup('advance', AdvanceInputItems)
 
 GlobalDragSource.setSourcesByGroup('container', ContainerItems)
 
