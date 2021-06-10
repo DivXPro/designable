@@ -24,6 +24,7 @@ import {
 import { Content } from './content'
 import { Space, Button, Radio } from 'antd'
 import { Setting } from './setting'
+import { FormDesignContext } from './context'
 import './register'
 import 'antd/dist/antd.less'
 import 'codemirror/lib/codemirror.css'
@@ -61,73 +62,75 @@ const App = () => {
   const engine = useMemo(() => createDesigner(), [])
 
   return (
-    <Designer engine={engine}>
-      <MainPanel logo={<Logo />} actions={<Actions />}>
-        <CompositePanel>
-          <CompositePanel.Item
-            title="panels.Component"
-            icon={<IconWidget infer="Component" />}
-          >
-            <DragSourceWidget title="sources.Inputs" name="input" />
-            <DragSourceWidget title="sources.Displays" name="display" />
-          </CompositePanel.Item>
-          <CompositePanel.Item
-            title="panels.OutlinedTree"
-            icon={<IconWidget infer="Outline" />}
-          >
-            <OutlineTreeWidget />
-          </CompositePanel.Item>
-        </CompositePanel>
-        <Workspace id="form">
-          <WorkspacePanel>
-            <ToolbarPanel>
-              <ToolbarWidget />
-              <Button.Group>
-                <Button
-                  disabled={view === 'design'}
-                  onClick={() => {
-                    setView('design')
-                  }}
-                  size="small"
-                >
-                  <IconWidget infer="Design" />
-                </Button>
-                <Button
-                  disabled={view === 'json'}
-                  onClick={() => {
-                    setView('json')
-                  }}
-                  size="small"
-                >
-                  <IconWidget infer="JSON" />
-                </Button>
-                <Button
-                  disabled={view === 'code'}
-                  onClick={() => {
-                    setView('code')
-                  }}
-                  size="small"
-                >
-                  <IconWidget infer="Code" />
-                </Button>
-              </Button.Group>
-            </ToolbarPanel>
-            <ViewportPanel>
-              {view === 'json' && <div>JSON 输入</div>}
-              {view === 'design' && (
-                <Viewport>
-                  {/* <Sandbox
-                    jsAssets={['./runtime.bundle.js', './sandbox.bundle.js']}
-                  /> */}
-                  <Content />
-                </Viewport>
-              )}
-            </ViewportPanel>
-          </WorkspacePanel>
-        </Workspace>
-        <Setting />
-      </MainPanel>
-    </Designer>
+    <FormDesignContext.Provider value={{ prefixCls: 'form-design-' }}>
+      <Designer engine={engine}>
+        <MainPanel logo={<Logo />} actions={<Actions />}>
+          <CompositePanel>
+            <CompositePanel.Item
+              title="panels.Component"
+              icon={<IconWidget infer="Component" />}
+            >
+              <DragSourceWidget title="sources.Inputs" name="input" />
+              <DragSourceWidget title="sources.Displays" name="display" />
+            </CompositePanel.Item>
+            <CompositePanel.Item
+              title="panels.OutlinedTree"
+              icon={<IconWidget infer="Outline" />}
+            >
+              <OutlineTreeWidget />
+            </CompositePanel.Item>
+          </CompositePanel>
+          <Workspace id="form">
+            <WorkspacePanel>
+              <ToolbarPanel>
+                <ToolbarWidget />
+                <Button.Group>
+                  <Button
+                    disabled={view === 'design'}
+                    onClick={() => {
+                      setView('design')
+                    }}
+                    size="small"
+                  >
+                    <IconWidget infer="Design" />
+                  </Button>
+                  <Button
+                    disabled={view === 'json'}
+                    onClick={() => {
+                      setView('json')
+                    }}
+                    size="small"
+                  >
+                    <IconWidget infer="JSON" />
+                  </Button>
+                  <Button
+                    disabled={view === 'code'}
+                    onClick={() => {
+                      setView('code')
+                    }}
+                    size="small"
+                  >
+                    <IconWidget infer="Code" />
+                  </Button>
+                </Button.Group>
+              </ToolbarPanel>
+              <ViewportPanel>
+                {view === 'json' && <div>JSON 输入</div>}
+                {view === 'design' && (
+                  <Viewport>
+                    {/* <Sandbox
+                      jsAssets={['./runtime.bundle.js', './sandbox.bundle.js']}
+                    /> */}
+                    <Content />
+                  </Viewport>
+                )}
+              </ViewportPanel>
+            </WorkspacePanel>
+          </Workspace>
+          <Setting />
+        </MainPanel>
+      </Designer>
+    </FormDesignContext.Provider>
   )
 }
 

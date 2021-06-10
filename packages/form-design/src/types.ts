@@ -118,3 +118,7 @@ export interface IFormSchema {
   properties?: Record<string, IFormSchema>
   size?: LayoutSize | number
 }
+
+export interface IFormDesignContext {
+  prefixCls: string
+}
