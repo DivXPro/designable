@@ -17,6 +17,7 @@ import {
   FormLayout,
   FormTab,
 } from '@formily/antd'
+import { Slider } from 'antd'
 import {
   SizeInput,
   ColorInput,
@@ -68,6 +69,7 @@ export const SchemaField = createSchemaField({
     TimePicker,
     Select,
     Radio,
+    Slider,
     Switch,
     Space,
     ArrayItems,
