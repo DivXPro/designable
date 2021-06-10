@@ -1,5 +1,73 @@
 # Changelog
 
+## v0.1.23(2021-06-10)
+
+### :beetle: Bug Fixes
+
+1. [fix(settings): fix PolyInput](https://github.com/alibaba/designable/commit/411c9d8) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.22(2021-06-10)
+
+### :tada: Enhancements
+
+1. [feat(settings): improve radio.group ui](https://github.com/alibaba/designable/commit/00bc7e6) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.21(2021-06-09)
+
+### No Change Log
+
+## v0.1.20(2021-06-09)
+
+### :rocket: Improve Performance
+
+1. [perf(core): improve performance](https://github.com/alibaba/designable/commit/326067f) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.19(2021-06-09)
+
+### :rocket: Improve Performance
+
+1. [perf(core): improve performance](https://github.com/alibaba/designable/commit/305da1a) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.18(2021-06-09)
+
+### :rocket: Improve Performance
+
+1. [perf(core): improve performance](https://github.com/alibaba/designable/commit/15dea64) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.17(2021-06-09)
+
+### :rocket: Improve Performance
+
+1. [perf(core): improve performance](https://github.com/alibaba/designable/commit/a900b91) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.16(2021-06-09)
+
+### No Change Log
+
+## v0.1.15(2021-06-09)
+
+### :beetle: Bug Fixes
+
+1. [fix(settings): fix settings dataSource locales](https://github.com/alibaba/designable/commit/30ce798) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.14(2021-06-09)
+
+### :beetle: Bug Fixes
+
+1. [fix(react): fix multi language](https://github.com/alibaba/designable/commit/156ecba) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.13(2021-06-09)
+
+### :tada: Enhancements
+
+1. [feat(core): add @formily/json-schema dependencies](https://github.com/alibaba/designable/commit/29ba736) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.12(2021-06-07)
+
+### :tada: Enhancements
+
+1. [feat(settings): support dynamic prop schema](https://github.com/alibaba/designable/commit/ca9d41f) :point_right: ( [janryWang](https://github.com/janryWang) )
+
 ## v0.1.11(2021-06-07)
 
 ### :tada: Enhancements

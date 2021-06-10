@@ -1,4 +1,4 @@
-import { each, isFn, isPlainObj } from '@designable/shared'
+import { each, isFn, isPlainObj, isStr } from '@designable/shared'
 import { Path } from '@formily/path'
 import { define, observable } from '@formily/reactive'
 import {

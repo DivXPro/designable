@@ -1,108 +1,272 @@
-import {
-  JSONSchema7Type,
-  JSONSchema7TypeName,
-  JSONSchema7Version,
-} from 'json-schema'
+export type SchemaEnum<Message> = Array<
+  | string
+  | number
+  | { label: Message; value: any; [key: string]: any }
+  | { key: any; title: Message; [key: string]: any }
+>
 
-export type JSONSchema7Definition = JSONSchema7 | boolean
-export interface JSONSchema7 {
-  $id?: string
-  $ref?: string
-  $schema?: JSONSchema7Version
-  $comment?: string
+export type SchemaTypes =
+  | 'string'
+  | 'object'
+  | 'array'
+  | 'number'
+  | 'boolean'
+  | 'void'
+  | 'date'
+  | 'datetime'
+  | (string & {})
 
+export type SchemaProperties<
+  Decorator,
+  Component,
+  DecoratorProps,
+  ComponentProps,
+  Pattern,
+  Display,
+  Validator,
+  Message
+> = Record<
+  string,
+  ISchema<
+    Decorator,
+    Component,
+    DecoratorProps,
+    ComponentProps,
+    Pattern,
+    Display,
+    Validator,
+    Message
+  >
+>
+
+export type SchemaPatch = (schema: ISchema) => ISchema
+
+export type SchemaKey = string | number
+
+export type SchemaEffectTypes =
+  | 'onFieldInit'
+  | 'onFieldMount'
+  | 'onFieldUnmount'
+  | 'onFieldValueChange'
+  | 'onFieldInputValueChange'
+  | 'onFieldInitialValueChange'
+  | 'onFieldValidateStart'
+  | 'onFieldValidateEnd'
+  | 'onFieldValidateFailed'
+  | 'onFieldValidateSuccess'
+
+export type SchemaReaction<Field = any> =
+  | {
+      dependencies?: string[] | Record<string, string>
+      when?: string | boolean
+      target?: string
+      effects?: SchemaEffectTypes[]
+      fulfill?: {
+        state?: any
+        schema?: ISchema
+        run?: string
+      }
+      otherwise?: {
+        state?: any
+        schema?: ISchema
+        run?: string
+      }
+      [key: string]: any
+    }
+  | ((field: Field) => void)
+
+export type SchemaReactions<Field = any> =
+  | SchemaReaction<Field>
+  | SchemaReaction<Field>[]
+
+export type SchemaItems<
+  Decorator,
+  Component,
+  DecoratorProps,
+  ComponentProps,
+  Pattern,
+  Display,
+  Validator,
+  Message
+> =
+  | ISchema<
+      Decorator,
+      Component,
+      DecoratorProps,
+      ComponentProps,
+      Pattern,
+      Display,
+      Validator,
+      Message
+    >
+  | ISchema<
+      Decorator,
+      Component,
+      DecoratorProps,
+      ComponentProps,
+      Pattern,
+      Display,
+      Validator,
+      Message
+    >[]
+
+export type SchemaComponents = Record<string, any>
+
+export interface ISchemaFieldFactoryOptions<
+  Components extends SchemaComponents = any
+> {
+  components?: Components
+  scope?: any
+}
+
+export interface ISchemaFieldUpdateRequest {
+  state?: any
+  schema?: ISchema
+  run?: string
+}
+
+export interface ISchemaTransformerOptions extends ISchemaFieldFactoryOptions {
+  required?: ISchema['required']
+}
+
+export type Stringify<P extends { [key: string]: any }> = {
   /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.1
+   * Use `string & {}` instead of string to keep Literal Type for ISchema#component and ISchema#decorator
    */
-  type?: JSONSchema7TypeName | JSONSchema7TypeName[]
-  enum?: JSONSchema7Type[]
-  const?: JSONSchema7Type
+  [key in keyof P]?: P[key] | (string & {})
+}
 
-  /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.2
-   */
+export type ISchema<
+  Decorator = any,
+  Component = any,
+  DecoratorProps = any,
+  ComponentProps = any,
+  Pattern = any,
+  Display = any,
+  Validator = any,
+  Message = any,
+  ReactionField = any
+> = Stringify<{
+  version?: string
+  name?: SchemaKey
+  title?: Message
+  description?: Message
+  default?: any
+  readOnly?: boolean
+  writeOnly?: boolean
+  type?: SchemaTypes
+  enum?: SchemaEnum<Message>
+  const?: any
   multipleOf?: number
   maximum?: number
   exclusiveMaximum?: number
   minimum?: number
   exclusiveMinimum?: number
-
-  /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.3
-   */
   maxLength?: number
   minLength?: number
-  pattern?: string
-
-  /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.4
-   */
-  items?: JSONSchema7Definition | JSONSchema7Definition[]
-  additionalItems?: JSONSchema7Definition
+  pattern?: string | RegExp
   maxItems?: number
   minItems?: number
   uniqueItems?: boolean
-  contains?: JSONSchema7
-
-  /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.5
-   */
   maxProperties?: number
   minProperties?: number
-  required?: string[]
-  properties?: {
-    [key: string]: JSONSchema7Definition
-  }
-  patternProperties?: {
-    [key: string]: JSONSchema7Definition
-  }
-  additionalProperties?: JSONSchema7Definition
-  dependencies?: {
-    [key: string]: JSONSchema7Definition | string[]
-  }
-  propertyNames?: JSONSchema7Definition
-
-  /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.6
-   */
-  if?: JSONSchema7Definition
-  then?: JSONSchema7Definition
-  else?: JSONSchema7Definition
-
-  /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-6.7
-   */
-  allOf?: JSONSchema7Definition[]
-  anyOf?: JSONSchema7Definition[]
-  oneOf?: JSONSchema7Definition[]
-  not?: JSONSchema7Definition
-
-  /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-7
-   */
+  required?: string[] | boolean | string
   format?: string
+  $ref?: string
+  /** nested json schema spec **/
+  definitions?: SchemaProperties<
+    Decorator,
+    Component,
+    DecoratorProps,
+    ComponentProps,
+    Pattern,
+    Display,
+    Validator,
+    Message
+  >
+  properties?: SchemaProperties<
+    Decorator,
+    Component,
+    DecoratorProps,
+    ComponentProps,
+    Pattern,
+    Display,
+    Validator,
+    Message
+  >
+  items?: SchemaItems<
+    Decorator,
+    Component,
+    DecoratorProps,
+    ComponentProps,
+    Pattern,
+    Display,
+    Validator,
+    Message
+  >
+  additionalItems?: ISchema<
+    Decorator,
+    Component,
+    DecoratorProps,
+    ComponentProps,
+    Pattern,
+    Display,
+    Validator,
+    Message
+  >
+  patternProperties?: SchemaProperties<
+    Decorator,
+    Component,
+    DecoratorProps,
+    ComponentProps,
+    Pattern,
+    Display,
+    Validator,
+    Message
+  >
+  additionalProperties?: ISchema<
+    Decorator,
+    Component,
+    DecoratorProps,
+    ComponentProps,
+    Pattern,
+    Display,
+    Validator,
+    Message
+  >
 
-  /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-8
-   */
-  contentMediaType?: string
-  contentEncoding?: string
+  //顺序描述
+  ['x-index']?: number
+  //交互模式
+  ['x-pattern']?: Pattern
+  //展示状态
+  ['x-display']?: Display
+  //校验器
+  ['x-validator']?: Validator
+  //装饰器
+  ['x-decorator']?: Decorator | (string & {})
+  //装饰器属性
+  ['x-decorator-props']?: DecoratorProps
+  //组件
+  ['x-component']?: Component | (string & {})
+  //组件属性
+  ['x-component-props']?: ComponentProps
+  //组件响应器
+  ['x-reactions']?: SchemaReactions<ReactionField>
+  //内容
+  ['x-content']?: any
 
-  /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-9
-   */
-  definitions?: {
-    [key: string]: JSONSchema7Definition
-  }
+  ['x-visible']?: boolean
 
-  /**
-   * @see https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#section-10
-   */
-  title?: string | React.ReactNode
-  description?: string | React.ReactNode
-  default?: JSONSchema7Type
-  readOnly?: boolean
-  writeOnly?: boolean
-  examples?: JSONSchema7Type
+  ['x-hidden']?: boolean
+
+  ['x-disabled']?: boolean
+
+  ['x-editable']?: boolean
+
+  ['x-read-only']?: boolean
+
+  ['x-read-pretty']?: boolean
+
   [key: string]: any
-}
+}>

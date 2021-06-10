@@ -5,7 +5,7 @@ import {
   DragStopEvent,
   ViewportScrollEvent,
 } from '../events'
-import { Point } from '@designable/shared'
+import { Point, requestIdle } from '@designable/shared'
 
 export const useDragDropEffect = (engine: Engine) => {
   engine.subscribeTo(DragStartEvent, (event) => {
@@ -106,6 +106,7 @@ export const useDragDropEffect = (engine: Engine) => {
 
   engine.subscribeTo(DragStopEvent, () => {
     if (engine.cursor.type !== CursorType.Move) return
+
     engine.workbench.eachWorkspace((currentWorkspace) => {
       const operation = currentWorkspace.operation
       const dragNodes = operation.getDragNodes()

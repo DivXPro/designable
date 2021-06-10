@@ -18,5 +18,23 @@
     * {
       font-size: 13px;
     }
+
+    .@{ant-prefix}-formily-item-control-content-component {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      & > .@{ant-prefix}-radio-group {
+        display: flex !important;
+        width: 100%;
+        .@{ant-prefix}-radio-button-wrapper {
+          display: flex;
+          justify-content: center;
+          padding: 0 6px !important;
+          align-items: center;
+          flex-grow: 2;
+        }
+      }
+    }
   }
 }
