@@ -1,4 +1,5 @@
 import { createSchemaField } from '@formily/react'
+import { Rate } from 'antd'
 import {
   FormItem,
   Input,
@@ -35,6 +36,7 @@ import {
   FieldSizeSetter,
   FormulaSetter,
   OptionInput,
+  SlideInput,
 } from './components'
 
 export const SchemaField = createSchemaField({
@@ -59,6 +61,8 @@ export const SchemaField = createSchemaField({
     FieldSizeSetter,
     FormulaSetter,
     OptionInput,
+    Rate,
+    SlideInput,
     NumberPicker,
     DatePicker,
     TimePicker,

@@ -1,6 +1,7 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback } from 'react'
 import { usePrefix } from '@designable/react'
 import cls from 'classnames'
+import { Typography } from 'antd'
 import { FormDialog, FormItem, FormLayout, Input } from '@formily/antd'
 import { createSchemaField } from '@formily/react'
 import './styles.less'
@@ -65,9 +66,15 @@ export const OptionInput = (props) => {
       style={props.style}
       onClick={handleEdit}
     >
-      {props.value?.label || (
-        <span className={`${prefix}__placeholder`}>点击设置选项值</span>
-      )}
+      {
+        <Typography.Text
+          type={props.value?.label ? null : 'secondary'}
+          style={{ width: '100%' }}
+          ellipsis={props.value.label ? { tooltip: props.value.label } : null}
+        >
+          {props.value?.label || '点击设置选项值'}
+        </Typography.Text>
+      }
     </div>
   )
 }

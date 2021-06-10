@@ -20,19 +20,19 @@ export const FieldSizeSetter: React.FC<IFieldSizeSetterProps> = observer(
         className={props.className}
         options={[
           {
-            label: '25%',
+            label: '25',
             value: 'quarter',
           },
           {
-            label: '50%',
+            label: '50',
             value: 'half',
           },
           {
-            label: '75%',
+            label: '75',
             value: 'three_quarter',
           },
           {
-            label: '100%',
+            label: '100',
             value: 'full',
           },
         ]}

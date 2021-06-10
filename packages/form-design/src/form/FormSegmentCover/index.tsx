@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTreeNode } from '@designable/react'
 import { FieldSegment } from '@toy-box/toybox-lib'
-import { Typography, Space } from 'antd'
+import { Typography } from 'antd'
 import { usePrefix } from '../../hooks/usePrefix'
 
 import './style.less'
@@ -12,7 +12,7 @@ export const FromSegmentCover = (props) => {
 
   return (
     <div className={prefixCls} {...props}>
-      <FieldSegment title={node.props.title} {...node.props}>
+      <FieldSegment title={node.props.title} {...node.props} collapsible>
         {props.children ? (
           props.children
         ) : (
