@@ -11,6 +11,8 @@ import {
 } from './schema/formItems'
 import locales from './locales'
 
+GlobalRegistry.registerDesignerLocales(locales)
+
 GlobalRegistry.registerDesignerProps({
   ...BasicInputProperties,
   ...AdvanceInputProperties,
@@ -22,5 +24,3 @@ GlobalDragSource.setSourcesByGroup('basic', BasicInputItems)
 GlobalDragSource.setSourcesByGroup('advance', AdvanceInputItems)
 
 GlobalDragSource.setSourcesByGroup('container', ContainerItems)
-
-GlobalRegistry.registerDesignerLocales(locales)

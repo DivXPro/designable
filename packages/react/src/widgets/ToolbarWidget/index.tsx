@@ -124,7 +124,7 @@ export const ToolbarWidget: React.FC<IToolbarWidgetProps> = observer(
               screen.setType(ScreenType.PC)
             }}
           >
-            <IconWidget infer="PC" />
+            <IconWidget infer="ComputerLine" />
           </Button>
           <Button
             size="small"
@@ -133,16 +133,7 @@ export const ToolbarWidget: React.FC<IToolbarWidgetProps> = observer(
               screen.setType(ScreenType.Mobile)
             }}
           >
-            <IconWidget infer="Mobile" />
-          </Button>
-          <Button
-            size="small"
-            disabled={screen.type === ScreenType.Responsive}
-            onClick={() => {
-              screen.setType(ScreenType.Responsive)
-            }}
-          >
-            <IconWidget infer="Responsive" />
+            <IconWidget infer="SmartphoneLine" />
           </Button>
         </Button.Group>
       )

@@ -17,7 +17,8 @@ import {
 import { observer } from '@formily/react'
 import { createDesigner, GlobalRegistry } from '@designable/core'
 import { Content } from './content'
-import { Space, Button, Radio } from 'antd'
+import { Space, Button as AntButton, Radio } from 'antd'
+import { Button } from '@toy-box/toybox-lib'
 import { Setting } from './setting'
 import { FormDesignContext } from './context'
 import './register'
@@ -25,13 +26,18 @@ import './register'
 import 'antd/dist/antd.less'
 import 'codemirror/lib/codemirror.css'
 import './theme.less'
+import { convert2FormilySchema } from './converts'
 
 const Logo: React.FC = () => (
-  <div style={{ display: 'flex', alignItems: 'center', fontSize: 14 }}>
-    <IconWidget
-      infer="Logo"
-      style={{ margin: 10, height: 24, width: 'auto' }}
-    />
+  <div
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      fontSize: 16,
+      color: '#333',
+    }}
+  >
+    <IconWidget infer="Home3Line" />
   </div>
 )
 
@@ -64,7 +70,7 @@ const App = () => {
   const [view, setView] = useState('design')
   const engine = useMemo(() => createDesigner(), [])
   const publish = useCallback(() => {
-    // console.log('Ischema', engine.getCurrentTree().serialize())
+    // console.log('Ischema', convert2FormilySchema(engine.getCurrentTree().serialize()))
   }, [engine])
 
   return (
@@ -82,7 +88,7 @@ const App = () => {
             </CompositePanel.Item>
             <CompositePanel.Item
               title="panels.OutlinedTree"
-              icon={<IconWidget infer="Outline" />}
+              icon={<IconWidget infer="NodeTree" />}
             >
               <OutlineTreeWidget />
             </CompositePanel.Item>
@@ -91,35 +97,26 @@ const App = () => {
             <WorkspacePanel>
               <ToolbarPanel>
                 <ToolbarWidget />
-                <Button.Group>
-                  <Button
-                    disabled={view === 'design'}
-                    onClick={() => {
-                      setView('design')
-                    }}
-                    size="small"
-                  >
-                    <IconWidget infer="Design" />
-                  </Button>
-                  <Button
-                    disabled={view === 'json'}
-                    onClick={() => {
-                      setView('json')
-                    }}
-                    size="small"
-                  >
-                    <IconWidget infer="JSON" />
-                  </Button>
-                  <Button
-                    disabled={view === 'code'}
-                    onClick={() => {
-                      setView('code')
-                    }}
-                    size="small"
-                  >
-                    <IconWidget infer="Code" />
-                  </Button>
-                </Button.Group>
+                <Space>
+                  <AntButton.Group>
+                    <Button
+                      disabled={view === 'design'}
+                      onClick={() => {
+                        setView('design')
+                      }}
+                      size="small"
+                      icon={<IconWidget infer="Brush2Line" />}
+                    />
+                    <Button
+                      disabled={view === 'json'}
+                      onClick={() => {
+                        setView('json')
+                      }}
+                      size="small"
+                      icon={<IconWidget infer="CodeView" />}
+                    />
+                  </AntButton.Group>
+                </Space>
               </ToolbarPanel>
               <ViewportPanel>
                 {view === 'json' && <div>JSON 输入</div>}

@@ -23,6 +23,16 @@ export const convert2Schema = (data: ITreeNode): IFormSchemaBase => {
       type: 'array',
       properties,
     }
+  } else if (data.children && data.children.length > 0) {
+    const properties = {} as Record<string, IFormSchemaBase>
+    ;(data.children || []).map((child) => {
+      properties[child.id] = convert2Schema(child)
+    })
+    return {
+      ...data.props,
+      type: data.props.type,
+      properties,
+    }
   } else {
     return {
       ...data.props,
@@ -137,7 +147,7 @@ export const convertFormilyProperties = (
 }
 
 export const formSchema2FormilySchema = (schema: IFormSchemaBase) => {
-  const { name: title, type, properties, ...other } = schema
+  const { title, type, properties, ...other } = schema
   if (type === 'arrayTable') {
     const formilyProperties: Record<string, ISchema> = {}
     Object.keys(properties).forEach((key) => {

@@ -11,7 +11,6 @@ const useSchema = () => {
 }
 
 export const Setting = observer((props) => {
-  const tree = useTree()
   const schema = useSchema()
   return (
     <SettingsPanel title="panels.PropertySettings">

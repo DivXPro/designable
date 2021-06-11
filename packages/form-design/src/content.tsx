@@ -4,6 +4,7 @@ import { observer } from '@formily/reactive-react'
 import { Fields } from '@toy-box/toybox-lib'
 import { FormItemCover, FromRowCover, FromSegmentCover } from './form'
 import {
+  Input,
   Form,
   Select,
   Switch,
@@ -37,7 +38,7 @@ export const Content = () => (
       Root: observer((props) => {
         const node = useTreeNode()
         return (
-          <Form layout="vertical" {...node.props}>
+          <Form layout="vertical" style={{ padding: '8px' }} {...node.props}>
             {props.children}
           </Form>
         )
@@ -50,17 +51,9 @@ export const Content = () => (
           }),
           [props.size]
         )
-        const field = useMemo(
-          () => ({
-            key: node.props.key,
-            title: node.props.title,
-            type: 'string',
-          }),
-          []
-        )
         return (
           <FormItemCover style={style} label={node.props.title} {...props}>
-            <Fields.FieldString mode="edit" field={field} />
+            <Input />
           </FormItemCover>
         )
       }),
@@ -95,17 +88,9 @@ export const Content = () => (
           }),
           [props.size]
         )
-        const field = useMemo(
-          () => ({
-            key: node.props.key,
-            title: node.props.title,
-            type: 'number',
-          }),
-          []
-        )
         return (
-          <FormItemCover style={style} {...props}>
-            <Fields.FieldNumber mode="edit" field={field} />
+          <FormItemCover style={style} label={node.props.title} {...props}>
+            <InputNumber />
           </FormItemCover>
         )
       }),
@@ -117,17 +102,9 @@ export const Content = () => (
           }),
           [props.size]
         )
-        const field = useMemo(
-          () => ({
-            key: node.props.key,
-            title: node.props.title,
-            type: 'number',
-          }),
-          []
-        )
         return (
-          <FormItemCover style={style} {...props}>
-            <Fields.FieldNumber mode="edit" field={field} />
+          <FormItemCover style={style} label={node.props.title} {...props}>
+            <InputNumber />
           </FormItemCover>
         )
       }),
@@ -195,18 +172,9 @@ export const Content = () => (
           }),
           [props.size]
         )
-        const field = useMemo(
-          () => ({
-            key: node.props.key,
-            title: node.props.title,
-            type: 'number',
-            options: node.props.enum,
-          }),
-          []
-        )
         return (
           <FormItemCover style={style} label={node.props.title} {...props}>
-            <Fields.FieldSelect mode="edit" field={field} />
+            <Select />
           </FormItemCover>
         )
       }),
@@ -262,14 +230,19 @@ export const Content = () => (
           key: item.key,
           name: node.props.items[index].title,
         }))
+        const style = useMemo(
+          () => ({
+            width: takeWidth(props.size),
+          }),
+          [props.size]
+        )
         return (
-          <FormItemCover label={node.props.title} {...props}>
+          <FormItemCover style={style} label={node.props.title} {...props}>
             <Table columns={columns} />
           </FormItemCover>
         )
       }),
       FormRow: (props) => {
-        const node = useTreeNode()
         return <FromRowCover {...props} />
       },
       FormSegment: (props) => {

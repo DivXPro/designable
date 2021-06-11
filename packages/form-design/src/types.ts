@@ -1,4 +1,4 @@
-export type AuthorityType = 0 | 1 | 2
+export type AuthorityType = 'hidden' | 'read' | 'edit'
 
 export declare type SchemaEnum = Array<
   | string

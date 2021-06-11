@@ -16,6 +16,7 @@ import {
   FormGrid,
   FormLayout,
   FormTab,
+  Editable,
 } from '@formily/antd'
 import { Slider } from 'antd'
 import {
@@ -68,6 +69,7 @@ export const SchemaField = createSchemaField({
     DatePicker,
     TimePicker,
     Select,
+    Editable,
     Radio,
     Slider,
     Switch,

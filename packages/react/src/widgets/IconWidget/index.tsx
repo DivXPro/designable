@@ -3,12 +3,14 @@ import { GlobalRegistry } from '@designable/core'
 import { isStr, isFn, isPlainObj } from '@designable/shared'
 import { observer } from '@formily/reactive-react'
 import { Tooltip } from 'antd'
+import * as remixIcons from '@airclass/icons'
 import { usePrefix, useRegistry, useTheme } from '../../hooks'
 import cls from 'classnames'
 import * as icons from '../../icons'
 import './styles.less'
 
 GlobalRegistry.registerDesignerIcons(icons)
+GlobalRegistry.registerDesignerIcons(remixIcons)
 
 const IconContext = createContext<IconProviderProps>(null)
 
@@ -71,6 +73,13 @@ export const IconWidget: React.FC<IIconWidgetProps> & {
     } else if (isPlainObj(infer)) {
       if (infer[theme]) {
         return takeIcon(infer[theme])
+      }
+      if (infer['render']) {
+        return React.createElement(infer, {
+          height,
+          width,
+          fill: 'currentColor',
+        })
       }
     }
   }

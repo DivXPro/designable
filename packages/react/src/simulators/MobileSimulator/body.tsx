@@ -11,8 +11,8 @@ export const MobileBody: React.FC<IMobileBodyProps> = observer((props) => {
     if (screen.flip) {
       return {
         position: 'absolute',
-        width: 736,
-        height: 414,
+        height: 375,
+        width: 64,
         top: 43.3333,
         left: 106.667,
         overflow: 'hidden',
@@ -20,10 +20,8 @@ export const MobileBody: React.FC<IMobileBodyProps> = observer((props) => {
     }
     return {
       position: 'absolute',
-      width: 414,
-      height: 736,
-      top: 126.667,
-      left: 23.3333,
+      width: 375,
+      height: 620,
       overflow: 'hidden',
     }
   }
@@ -42,22 +40,34 @@ export const MobileBody: React.FC<IMobileBodyProps> = observer((props) => {
           minHeight: screen.flip ? 0 : 1000,
         }}
       >
-        <img
-          src={
-            screen.flip
-              ? '//img.alicdn.com/tfs/TB1gj1O1eL2gK0jSZPhXXahvXXa-1420-690.png'
-              : '//img.alicdn.com/tfs/TB1zlYLpRBh1e4jSZFhXXcC9VXa-690-1420.png'
-          }
+        <div
+          // src={
+          //   screen.flip
+          //     ? '//img.alicdn.com/tfs/TB1gj1O1eL2gK0jSZPhXXahvXXa-1420-690.png'
+          //     : '//img01.yzcdn.cn/public_files/2019/02/11/14417a76b49dac2851efaf744f87cdb4.png'
+          // }
           style={{
+            backgroundImage: `url(${
+              screen.flip
+                ? '//img.alicdn.com/tfs/TB1gj1O1eL2gK0jSZPhXXahvXXa-1420-690.png'
+                : '//img01.yzcdn.cn/public_files/2019/02/11/14417a76b49dac2851efaf744f87cdb4.png'
+            })`,
+            height: 64,
+            width: 375,
+            margin: '0 auto',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundPosition: '50%',
             display: 'block',
-            margin: '20px 0',
-            width: screen.flip ? 946.667 : 460,
-            height: screen.flip ? 460 : 946.667,
-            boxShadow: '0 0 20px #0000004d',
-            borderRadius: 60,
-            backfaceVisibility: 'hidden',
+            marginTop: 20,
+
+            // margin: '20px 0',
+            // width: screen.flip ? 946.667 : 460,
+            // // height: screen.flip ? 460 : 946.667,
+            // boxShadow: '0 0 20px #0000004d',
+            // backfaceVisibility: 'hidden',
           }}
-        ></img>
+        ></div>
         <div className={prefix + '-content'} style={getContentStyles()}>
           {props.children}
         </div>

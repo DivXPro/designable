@@ -46,7 +46,7 @@ export const commonProperties = {
     'x-decorator': 'FormItem',
     'x-component': 'Switch',
   },
-  name: {
+  title: {
     type: 'string',
     maxLength: 255,
     required: true,
@@ -92,34 +92,71 @@ export const defaultModeProperties = {
 
 const enumPropertie = {
   type: 'array',
-  'x-component': 'ArrayItems',
   'x-decorator': 'FormItem',
+  'x-component': 'ArrayItems',
+  'x-component-props': { style: { minWidth: '140px' } },
   items: {
     type: 'object',
-    'x-component-props': {
-      style: 'width: 100%',
-    },
+    'x-decorator': 'ArrayItems.Item',
     properties: {
-      space: {
+      left: {
         type: 'void',
         'x-component': 'Space',
-        'x-component-props': {
-          style: { width: '100%' },
-        },
         properties: {
           sort: {
             type: 'void',
             'x-decorator': 'FormItem',
+            'x-decorator-props': {
+              style: { paddingBottom: 0 },
+            },
             'x-component': 'ArrayItems.SortHandle',
           },
-          option: {
-            type: 'object',
-            'x-decorator': 'FormItem',
-            'x-component': 'OptionInput',
-          },
+        },
+      },
+      edit: {
+        type: 'object',
+        title: '输入选择性',
+        'x-component': 'OptionInput',
+        // 'x-decorator-props': {
+        //   style: { paddingBottom: 0 }
+        // },
+        // 'x-component-props': {
+        //   style: { paddingBottom: 0 }
+        // },
+        // 'x-reactions': [
+        //   {
+        //     dependencies: ['.edit.label'],
+        //     when: "{{$deps[0] != null && $deps[0].length > 0}}",
+        //     fulfill: {
+        //       state: {
+        //         title: "{{ $deps[0] }}"
+        //       }
+        //     }
+        //   }
+        // ],
+        // properties: {
+        //   label: {
+        //     type: 'string',
+        //     title: '选项名',
+        //     required: true,
+        //     'x-decorator': 'FormItem',
+        //     'x-component': 'Input',
+        //   },
+        //   value: {
+        //     type: 'string',
+        //     title: '选项值',
+        //     required: true,
+        //     'x-decorator': 'FormItem',
+        //     'x-component': 'Input',
+        //   }
+        // }
+      },
+      right: {
+        type: 'void',
+        'x-component': 'Space',
+        properties: {
           remove: {
             type: 'void',
-            'x-decorator': 'FormItem',
             'x-component': 'ArrayItems.Remove',
           },
         },

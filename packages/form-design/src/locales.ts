@@ -25,7 +25,7 @@ export const zhCN = {
     FormSegment: '区块',
   },
   settings: {
-    name: '标题',
+    title: '标题',
     hidden: '是否隐藏',
     size: '宽度（%）',
     description: '字段描述',
@@ -71,7 +71,7 @@ const enUs = {
     FormSegment: 'FormSegment',
   },
   settings: {
-    name: 'Name',
+    title: 'Title',
     hidden: 'Hidden',
     size: 'Size (%)',
     defaultMode: 'Default Mode',
