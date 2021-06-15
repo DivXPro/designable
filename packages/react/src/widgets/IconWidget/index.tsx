@@ -18,6 +18,7 @@ export interface IconProviderProps {
   tooltip?: boolean
 }
 export interface IIconWidgetProps extends React.HTMLAttributes<HTMLElement> {
+  tooltip?: React.ReactNode
   infer: React.ReactNode
   size?: number | string
 }
@@ -85,7 +86,8 @@ export const IconWidget: React.FC<IIconWidgetProps> & {
   }
   const renderTooltips = (children: React.ReactNode): React.ReactElement => {
     if (!isStr(props.infer) && context.tooltip) return children as any
-    const tooltip = registry.getDesignerMessage(`icons.${props.infer}`)
+    const tooltip =
+      props.tooltip || registry.getDesignerMessage(`icons.${props.infer}`)
     if (tooltip) {
       return <Tooltip title={tooltip}>{children}</Tooltip>
     }

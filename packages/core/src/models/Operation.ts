@@ -25,6 +25,8 @@ export class Operation {
 
   tree: TreeNode
 
+  focusNode: TreeNode
+
   selection: Selection
 
   viewportDragon: Dragon
@@ -61,6 +63,7 @@ export class Operation {
       operation: this,
       viewport: this.workspace.viewport,
     })
+    this.selection.select(this.tree)
     this.makeObservable()
   }
 
@@ -70,6 +73,18 @@ export class Operation {
 
   getSelectedNodes() {
     return this.selection.selected.map((id) => this.tree.findById(id))
+  }
+
+  switchFocusNode(node: TreeNode) {
+    if (this.focusNode === node) {
+      this.focusNode = null
+    } else {
+      this.focusNode = node
+    }
+  }
+
+  focusClean() {
+    this.focusNode = null
   }
 
   setDragNodes(nodes: TreeNode[]) {
@@ -183,6 +198,7 @@ export class Operation {
         lastGroupNode[node?.parent?.id] = node
       }
     })
+    const parents = new Map<TreeNode, TreeNode[]>()
     each(groups, (nodes, parentId) => {
       const lastNode = lastGroupNode[parentId]
       let insertPoint = lastNode
@@ -196,16 +212,26 @@ export class Operation {
           insertPoint = insertPoint.after
         } else if (this.selection.length === 1) {
           const targetNode = this.tree.findById(this.selection.first)
+          let cloneNodes = parents.get(targetNode)
+          if (!cloneNodes) {
+            cloneNodes = []
+            parents.set(targetNode, cloneNodes)
+          }
           if (targetNode && targetNode.allowAppend([cloned])) {
-            targetNode.appendNode(cloned)
+            cloneNodes.push(cloned)
           }
         }
       })
+    })
+    parents.forEach((nodes, target) => {
+      if (!nodes.length) return
+      target.appendNode(...nodes)
     })
   }
 
   makeObservable() {
     define(this, {
+      focusNode: observable.ref,
       hover: observable.ref,
       removeNodes: action,
       cloneNodes: action,

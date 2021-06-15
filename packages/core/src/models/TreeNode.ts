@@ -23,6 +23,7 @@ export interface ITreeNode {
   componentName?: string
   operation?: Operation
   hidden?: boolean
+  isSourceNode?: boolean
   id?: string
   props?: {
     [key: string]: any
@@ -46,26 +47,37 @@ const removeNode = (node: TreeNode) => {
   }
 }
 
-const resetDepth = (node: TreeNode) => {
-  node.depth = node.parent.depth + 1
-  node.children.forEach(resetDepth)
-}
-
 const resetNodesParent = (nodes: TreeNode[], parent: TreeNode) => {
+  const resetDepth = (node: TreeNode) => {
+    node.depth = node.parent.depth + 1
+    node.children.forEach(resetDepth)
+  }
+
+  const shallowReset = (node: TreeNode) => {
+    node.parent = parent
+    node.root = parent.root
+    resetDepth(node)
+  }
+
+  const deepReset = (node: TreeNode) => {
+    shallowReset(node)
+    resetNodesParent(node.children, node)
+  }
+
   return nodes.map((node) => {
-    if (node?.root?.operation) {
-      node?.root?.operation?.selection.remove(node)
-      removeNode(node)
-      node.parent = parent
-      node.root = parent.root
-      resetDepth(node)
-    } else if (node.parent && node.root) {
-      node = node.clone(parent)
+    if (!parent.isSourceNode) {
+      if (node.isSourceNode) {
+        node = node.clone(parent)
+        deepReset(node)
+      } else if (!node.isRoot && node.isInOperation) {
+        node.root.operation.selection?.remove?.(node)
+        removeNode(node)
+        shallowReset(node)
+      } else {
+        deepReset(node)
+      }
     } else {
-      node.parent = parent
-      node.root = parent.root
-      resetDepth(node)
-      resetNodesParent(node.children, node)
+      deepReset(node)
     }
     if (!TreeNodes.has(node.id)) {
       TreeNodes.set(node.id, node)
@@ -94,6 +106,8 @@ export class TreeNode {
 
   children: TreeNode[] = []
 
+  isSelfSourceNode: boolean
+
   originDesignerProps: IDesignerProps
 
   constructor(node?: ITreeNode, parent?: TreeNode) {
@@ -106,6 +120,7 @@ export class TreeNode {
     } else {
       this.root = this
       this.operation = node.operation
+      this.isSelfSourceNode = node.isSourceNode || false
       TreeNodes.set(this.id, this)
     }
     if (node) {
@@ -189,6 +204,14 @@ export class TreeNode {
     }, [])
   }
 
+  get isRoot() {
+    return this === this.root
+  }
+
+  get isInOperation() {
+    return !!this.root?.operation
+  }
+
   getPrevious(step = 1) {
     return this.parent.children[this.index - step]
   }
@@ -223,6 +246,10 @@ export class TreeNode {
     return node.isMyParents(this)
   }
 
+  get isSourceNode() {
+    return this.root.isSelfSourceNode
+  }
+
   triggerMutation(event: any) {
     if (this?.root?.operation) {
       this.root.operation.dispatch(event)
@@ -230,17 +257,32 @@ export class TreeNode {
     }
   }
 
-  find(finder: INodeFinder) {
+  find(finder: INodeFinder): TreeNode {
     if (finder(this)) {
       return this
     } else {
-      for (let i = 0; i < this.children.length; i++) {
-        const finded = this.children[i].find(finder)
-        if (finded) {
-          return finded
+      let finded = undefined
+      this.eachChildren((node) => {
+        if (finder(node)) {
+          finded = node
+          return false
         }
-      }
+      })
+      return finded
     }
+  }
+
+  findAll(finder: INodeFinder): TreeNode[] {
+    const results = []
+    if (finder(this)) {
+      results.push(this)
+    }
+    this.eachChildren((node) => {
+      if (finder(node)) {
+        results.push(node)
+      }
+    })
+    return results
   }
 
   distanceTo(node: TreeNode) {
@@ -318,12 +360,13 @@ export class TreeNode {
     })
   }
 
-  eachChildren(callback?: (node: TreeNode) => void) {
+  eachChildren(callback?: (node: TreeNode) => void | boolean) {
     if (isFn(callback)) {
-      this.children.map((node) => {
-        callback(node)
+      for (let i = 0; i < this.children.length; i++) {
+        const node = this.children[i]
+        if (callback(node) === false) return
         node.eachChildren(callback)
-      })
+      }
     }
   }
 
@@ -496,17 +539,18 @@ export class TreeNode {
   }
 
   clone(parent?: TreeNode) {
-    return new TreeNode(
+    const newNode = new TreeNode(
       {
         id: uid(),
         componentName: this.componentName,
         props: toJS(this.props),
         children: this.children.map((treeNode) => {
-          return treeNode.clone(this)
+          return treeNode.clone(newNode)
         }),
       },
       parent ? parent : this.parent
     )
+    return newNode
   }
 
   from(node?: ITreeNode) {

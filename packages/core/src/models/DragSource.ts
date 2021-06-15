@@ -6,6 +6,7 @@ export class DragSource {
   prefix: string
   constructor() {
     this.tree = new TreeNode({
+      isSourceNode: true,
       componentName: 'SourceRoot',
     })
     this.prefix = uid()
@@ -45,6 +46,19 @@ export class DragSource {
       newParent.setNodeChildren(...nodes)
       this.tree.appendNode(newParent)
     }
+  }
+
+  getAllGroup() {
+    const nodes = this.tree.findAll(
+      (node) => node.componentName === 'SourceGroup'
+    )
+    return nodes
+  }
+
+  getAllSources(): TreeNode[] {
+    return this.getAllGroup().reduce((buf, groupNode) => {
+      return buf.concat(this.getSourcesByGroup(groupNode.id))
+    }, [])
   }
 
   getSourcesByGroup(group: string) {

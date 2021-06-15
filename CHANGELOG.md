@@ -1,5 +1,163 @@
 # Changelog
 
+## v0.1.48(2021-06-14)
+
+### :rose: Improve code quality
+
+1. [refactor(source): improve ui](https://github.com/alibaba/designable/commit/a2aa115) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.47(2021-06-14)
+
+### :rose: Improve code quality
+
+1. [refactor(source): improve ui](https://github.com/alibaba/designable/commit/f58c251) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.46(2021-06-14)
+
+### :rose: Improve code quality
+
+1. [refactor(source): improve ui](https://github.com/alibaba/designable/commit/ad9c7d6) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.45(2021-06-14)
+
+### :rose: Improve code quality
+
+1. [refactor(source): improve ui](https://github.com/alibaba/designable/commit/23084d5) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.44(2021-06-13)
+
+### :beetle: Bug Fixes
+
+1. [fix(core): fix cloneNodes will trigger very much times events](https://github.com/alibaba/designable/commit/dbe09ab) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+1. [fix(react): fix selector unmount error](https://github.com/alibaba/designable/commit/76a64f1) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+### :blush: Other Changes
+
+1. [chore(react): add empty bg color](https://github.com/alibaba/designable/commit/96a4ac5) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.43(2021-06-13)
+
+### :rocket: Improve Performance
+
+1. [chore(settings): imporve SettingsForm render performance](https://github.com/alibaba/designable/commit/cefffb9) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+### :blush: Other Changes
+
+1. [chore(settings): imporve SettingsForm render performance](https://github.com/alibaba/designable/commit/cefffb9) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.42(2021-06-13)
+
+### :blush: Other Changes
+
+1. [chore(settings): add key to SettingsForm](https://github.com/alibaba/designable/commit/ddf6c9c) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.41(2021-06-13)
+
+### :tada: Enhancements
+
+1. [feat(core): improve focus dnd](https://github.com/alibaba/designable/commit/da7c8c6) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.40(2021-06-13)
+
+### No Change Log
+
+## v0.1.39(2021-06-13)
+
+### :tada: Enhancements
+
+1. [feat(core): support focus dnd](https://github.com/alibaba/designable/commit/363a8b9) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.38(2021-06-13)
+
+### :blush: Other Changes
+
+1. [chore(settings): improve NodePath styles](https://github.com/alibaba/designable/commit/298b377) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.37(2021-06-12)
+
+### No Change Log
+
+## v0.1.36(2021-06-12)
+
+### :beetle: Bug Fixes
+
+1. [fix(react): fix useDesigner effects memo leak](https://github.com/alibaba/designable/commit/1c83818) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+### :rocket: Improve Performance
+
+1. [chore(settings): improve NodePath click performance](https://github.com/alibaba/designable/commit/f92f71b) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+### :blush: Other Changes
+
+1. [chore(settings): improve NodePath click performance](https://github.com/alibaba/designable/commit/f92f71b) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.35(2021-06-12)
+
+### :blush: Other Changes
+
+1. [chore(settings): improve NodePath styles](https://github.com/alibaba/designable/commit/f757b9f) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.34(2021-06-12)
+
+### :beetle: Bug Fixes
+
+1. [fix(core): fix can not cancel multi select](https://github.com/alibaba/designable/commit/8d9ba60) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.33(2021-06-12)
+
+### :blush: Other Changes
+
+1. [chore(settings): sticky NodePath](https://github.com/alibaba/designable/commit/83ca82d) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.32(2021-06-12)
+
+### :tada: Enhancements
+
+1. [feat(settings): support NodePath](https://github.com/alibaba/designable/commit/c3f1ebe) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.31(2021-06-12)
+
+### :tada: Enhancements
+
+1. [feat(react): support useNodeIdProps](https://github.com/alibaba/designable/commit/3a11f73) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.30(2021-06-11)
+
+### :rose: Improve code quality
+
+1. [refactor(core): improve selection performance](https://github.com/alibaba/designable/commit/973d69e) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+### :rocket: Improve Performance
+
+1. [refactor(core): improve selection performance](https://github.com/alibaba/designable/commit/973d69e) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.29(2021-06-11)
+
+### :rose: Improve code quality
+
+1. [refactor(react): update components getter for TreeNodeWidget](https://github.com/alibaba/designable/commit/ad9f1a1) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.28(2021-06-11)
+
+### :beetle: Bug Fixes
+
+1. [fix(settings): fix locales](https://github.com/alibaba/designable/commit/aeaffbe) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.27(2021-06-11)
+
+### :beetle: Bug Fixes
+
+1. [fix(core): support more api for DragSource](https://github.com/alibaba/designable/commit/c23b800) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+1. [fix(settings): change tooltipLayout](https://github.com/alibaba/designable/commit/85f2464) :point_right: ( [janryWang](https://github.com/janryWang) )
+
+## v0.1.26(2021-06-10)
+
+### :beetle: Bug Fixes
+
+1. [fix(settings): fix slider style](https://github.com/alibaba/designable/commit/343f921) :point_right: ( [janryWang](https://github.com/janryWang) )
+
 ## v0.1.25(2021-06-10)
 
 ### :tada: Enhancements
@@ -101,73 +259,3 @@
 ### :tada: Enhancements
 
 1. [feat(settings): support dataSource i18n](https://github.com/alibaba/designable/commit/7a9aed6) :point_right: ( [janryWang](https://github.com/janryWang) )
-
-## v0.1.8(2021-06-03)
-
-### :rocket: Improve Performance
-
-1. [perf(react): improve performance](https://github.com/alibaba/designable/commit/f18c825) :point_right: ( [janryWang](https://github.com/janryWang) )
-
-## v0.1.7(2021-06-03)
-
-### :rocket: Improve Performance
-
-1. [perf(react): improve performance](https://github.com/alibaba/designable/commit/04a340b) :point_right: ( [janryWang](https://github.com/janryWang) )
-
-## v0.1.6(2021-06-02)
-
-### :blush: Other Changes
-
-1. [chore(project): update dependencies](https://github.com/alibaba/designable/commit/a1eabe5) :point_right: ( [janryWang](https://github.com/janryWang) )
-
-## v0.1.5(2021-06-02)
-
-### :tada: Enhancements
-
-1. [feat(settings): support multi languange](https://github.com/alibaba/designable/commit/80963f3) :point_right: ( [janryWang](https://github.com/janryWang) )
-
-1. [feat(core): support return single node for designerProps.getDragNodes](https://github.com/alibaba/designable/commit/acf0512) :point_right: ( [janryWang](https://github.com/janryWang) )
-
-### :blush: Other Changes
-
-1. [chore(typo): rename Past -> Paste (#5)](https://github.com/alibaba/designable/commit/71d865e) :point_right: ( [nikaple](https://github.com/nikaple) )
-
-## v0.1.4(2021-06-02)
-
-### :beetle: Bug Fixes
-
-1. [fix(core): fix functional designerProps is not work](https://github.com/alibaba/designable/commit/8d0ad12) :point_right: ( [janryWang](https://github.com/janryWang) )
-
-## v0.1.3(2021-06-02)
-
-### :rose: Improve code quality
-
-1. [refactor(core): refactor designerProps api](https://github.com/alibaba/designable/commit/be3d7fd) :point_right: ( [janryWang](https://github.com/janryWang) )
-
-## v0.1.2(2021-06-01)
-
-### :tada: Enhancements
-
-1. [feat(core): defaultRootProps ==> treeNode.designerProps.defaultProps](https://github.com/alibaba/designable/commit/1a5d729) :point_right: ( [janryWang](https://github.com/janryWang) )
-
-### :beetle: Bug Fixes
-
-1. [docs(readme): fix typo](https://github.com/alibaba/designable/commit/37178c9) :point_right: ( [janryWang](https://github.com/janryWang) )
-
-### :memo: Documents Changes
-
-1. [docs(readme): fix typo](https://github.com/alibaba/designable/commit/37178c9) :point_right: ( [janryWang](https://github.com/janryWang) )
-
-## v0.1.1(2021-06-01)
-
-### :tada: Enhancements
-
-1. [feat(react): exports contexts](https://github.com/alibaba/designable/commit/c6ef149) :point_right: ( [janryWang](https://github.com/janryWang) )
-
-### :memo: Documents Changes
-
-1. [docs(readme): update readme](https://github.com/alibaba/designable/commit/04a8722) :point_right: ( [janryWang](https://github.com/janryWang) )
-
-### :blush: Other Changes
-
-1. [chore(playground): update playground](https://github.com/alibaba/designable/commit/e604283) :point_right: ( [janryWang](https://github.com/janryWang) )
